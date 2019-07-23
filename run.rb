@@ -7,7 +7,7 @@ require'json'
 verbs=[]
 data={}
 
-csv=CSV.parse(File.read('jehle_verb_database.csv').chomp, headers: true, liberal_parsing: true)
+csv=CSV.parse(File.read("#{File.dirname(__FILE__)}/jehle_verb_database.csv").chomp, headers: true, liberal_parsing: true)
 
 csv.each do |row|
   verbs.push row[0].gsub(/"/,'')
