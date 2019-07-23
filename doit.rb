@@ -24,8 +24,8 @@ csv.each do |row|
   end
 
   infinitive=row[1].gsub(/"/,'').strip.downcase
-  mood=row[3].gsub(/"/,'').strip.downcase.gsub(/ /,'_').to_sym
-  tense=row[5].gsub(/"/,'').strip.downcase.gsub(/ /,'_').to_sym
+  mood=row[3].gsub(/"/,'').strip.downcase.gsub(/ /,'_').gsub(/[()]/, "").to_sym
+  tense=row[5].gsub(/"/,'').strip.downcase.gsub(/ /,'_').gsub(/[()]/, "").to_sym
   verb=row[6].gsub(/"/,'').strip
   s1=row[7].gsub(/"/,'').strip
   s2=row[8].gsub(/"/,'').strip
@@ -52,5 +52,5 @@ end
 
 
 #puts verbs.sample
-pp data
+#pp data
 
