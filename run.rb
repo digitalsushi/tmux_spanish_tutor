@@ -2,7 +2,6 @@
 
 require 'csv'
 require 'pp'
-require'json'
 
 data={}
 
