@@ -10,11 +10,11 @@ csv=CSV.parse(File.read("#{File.dirname(__FILE__)}/jehle_verb_database.csv").cho
 csv.each do |row|
   this_verb=row[0].gsub(/"/,'')
   if data[this_verb]
-    stuff=data[this_verb]
+    current_verb=data[this_verb]
   else
     data[this_verb]= {} 
-    stuff=data[this_verb]
-    data[this_verb][:verb]=this_verb
+    current_verb=data[this_verb]
+    current_verb[:verb]=this_verb
   end
 
   infinitive=row[1].gsub(/"/,'').strip.downcase
@@ -27,15 +27,15 @@ csv.each do |row|
   p1=row[10].gsub(/"/,'').strip
   p3=row[12].gsub(/"/,'').strip
 
-  stuff[:infinitive]=infinitive
-  stuff[mood]={} unless stuff[mood]
-  stuff[mood][tense]={} unless stuff[mood][tense]
-  stuff[mood][tense][:verb]=verb
-  stuff[mood][tense][:s1]=s1
-  stuff[mood][tense][:s2]=s2
-  stuff[mood][tense][:s3]=s3
-  stuff[mood][tense][:p1]=p1
-  stuff[mood][tense][:p3]=p3
+  current_verb[:infinitive]=infinitive
+  current_verb[mood]={} unless current_verb[mood]
+  current_verb[mood][tense]={} unless current_verb[mood][tense]
+  current_verb[mood][tense][:verb]=verb
+  current_verb[mood][tense][:s1]=s1
+  current_verb[mood][tense][:s2]=s2
+  current_verb[mood][tense][:s3]=s3
+  current_verb[mood][tense][:p1]=p1
+  current_verb[mood][tense][:p3]=p3
 end
 
 r=data[data.keys.sample]
