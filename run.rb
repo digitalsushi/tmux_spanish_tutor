@@ -4,15 +4,9 @@ require 'csv'
 require 'pp'
 require'json'
 
-verbs=[]
 data={}
 
 csv=CSV.parse(File.read("#{File.dirname(__FILE__)}/jehle_verb_database.csv").chomp, headers: true, liberal_parsing: true)
-
-csv.each do |row|
-  verbs.push row[0].gsub(/"/,'')
-end
-verbs=verbs.uniq
 
 csv.each do |row|
   this_verb=row[0].gsub(/"/,'')
@@ -47,4 +41,9 @@ end
 
 r=data[data.keys.sample]
 
+# uncomment this to see every mood and tense stored in the tree.
+# pp data
+
+# Right now, I only want the indicative present verb, and I dont want second person plural so there is no p2 variable stored above.
+# You could reference other moods and tenses as symbol names since they are just coming right in from the csv database.
 puts "#{r[:verb]}:#{r[:infinitive]}:#{r[:indicative][:present][:s1]}/#{r[:indicative][:present][:s2]}/#{r[:indicative][:present][:s3]}/#{r[:indicative][:present][:p1]}/#{r[:indicative][:present][:p3]}"
